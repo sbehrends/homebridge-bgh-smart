@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseDevices 1`] = `
+Array [
+  Object {
+    "Address": "1",
+    "Capabilities": 2555264,
+    "Description": "AC",
+    "DeviceAddress": "AC123",
+    "DeviceID": 60001,
+    "DeviceModelDesc": "HPA-4911",
+    "EndpointID": 70001,
+    "EndpointModelDesc": null,
+    "EndpointType": 12,
+    "Functional": true,
+    "Groups": Array [
+      Object {
+        "Description": "Living",
+        "GroupID": 20001,
+        "HomeID": 10005,
+      },
+    ],
+    "HomeID": 10005,
+    "IsEditable": true,
+    "MeteringUnitID": 0,
+    "Parameters": Array [
+      Object {
+        "Name": "ConfiguredSensors",
+        "Value": "0",
+      },
+      Object {
+        "Name": "IRProtocolCode",
+        "Value": "30",
+      },
+      Object {
+        "Name": "RoomTemperatureOffset",
+        "Value": "-400",
+      },
+      Object {
+        "Name": "SetpointMaxC",
+        "Value": "30",
+      },
+      Object {
+        "Name": "SetpointMinC",
+        "Value": "17",
+      },
+    ],
+    "ScriptObjectID": null,
+    "device": Object {
+      "Address": "AC123",
+      "AutomaticFirmwareUpdate": true,
+      "Comments": null,
+      "Description": "AC",
+      "DeviceID": 60001,
+      "DeviceModel": "HPA-4911",
+      "DeviceModelID": 15,
+      "FirmwareVersion": "1.0.0.17",
+      "HomeID": 10005,
+      "IsOnline": true,
+      "NewFirmwareAvailable": false,
+      "NumberOfEndpoints": 1,
+      "Parameters": null,
+      "PrivateKey": "XXXXXXXXY1",
+      "ScriptObjectID": null,
+      "TechnologyID": 5,
+    },
+    "endpointParameters": Object {
+      "maxTemp": "30",
+      "minTemp": "17",
+    },
+    "endpointValues": Object {
+      "currentTemp": "22",
+      "desiredTemp": "24",
+      "fanMode": "3",
+      "mode": "0",
+      "swingMode": 0,
+    },
+    "rawEndpointValues": Object {
+      "EndpointID": 70001,
+      "Values": Array [
+        Object {
+          "Value": "22",
+          "ValueType": 13,
+        },
+        Object {
+          "Value": "0",
+          "ValueType": 14,
+        },
+        Object {
+          "Value": "3",
+          "ValueType": 15,
+        },
+        Object {
+          "Value": "0",
+          "ValueType": 16,
+        },
+        Object {
+          "Value": "0",
+          "ValueType": 17,
+        },
+        Object {
+          "Value": "0",
+          "ValueType": 18,
+        },
+        Object {
+          "Value": "24",
+          "ValueType": 20,
+        },
+        Object {
+          "Value": "80",
+          "ValueType": 59,
+        },
+        Object {
+          "Value": "3909",
+          "ValueType": 60,
+        },
+        Object {
+          "Value": "71",
+          "ValueType": 61,
+        },
+        Object {
+          "Value": "0",
+          "ValueType": 62,
+        },
+      ],
+    },
+  },
+]
+`;

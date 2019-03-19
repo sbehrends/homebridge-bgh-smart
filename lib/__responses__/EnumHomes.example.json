@@ -1,0 +1,53 @@
+{
+  "EnumHomesResult": {
+    "Homes": [{
+      "Description": "DemoHome",
+      "HomeID": 10005,
+      "InvitedBy": null,
+      "IsDefault": false,
+      "IsOnline": true,
+      "IsOwner": true,
+      "Location": {
+        "CityName": null,
+        "CountryName": null,
+        "Latitude": null,
+        "Longitude": null,
+        "Radius": 500,
+        "StateName": null
+      },
+      "RemoteAccessKey": "XXXXXXXX01",
+      "TimeZoneID": 1,
+      "TimeZoneOffset": -180,
+      "Virtual": true,
+      "Weather": {
+        "Temperature": null
+      }
+    }, {
+      "Description": "Home",
+      "HomeID": 10006,
+      "InvitedBy": null,
+      "IsDefault": true,
+      "IsOnline": true,
+      "IsOwner": true,
+      "Location": {
+        "CityName": null,
+        "CountryName": null,
+        "Latitude": null,
+        "Longitude": null,
+        "Radius": 500,
+        "StateName": null
+      },
+      "RemoteAccessKey": "XXXXXXXX02",
+      "TimeZoneID": 1,
+      "TimeZoneOffset": -180,
+      "Virtual": true,
+      "Weather": {
+        "Temperature": null
+      }
+    }],
+    "ResponseStatus": {
+      "Messages": [],
+      "Status": 0
+    }
+  }
+}

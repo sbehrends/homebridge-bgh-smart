@@ -1,0 +1,316 @@
+{
+  "GetDataPacketResult": {
+    "AccessControlInfo": {
+      "EntryCode": "99999"
+    },
+    "Devices": [{
+      "Address": "AC123",
+      "AutomaticFirmwareUpdate": true,
+      "Comments": null,
+      "Description": "AC",
+      "DeviceID": 60001,
+      "DeviceModel": "HPA-4911",
+      "DeviceModelID": 15,
+      "FirmwareVersion": "1.0.0.17",
+      "HomeID": 10005,
+      "IsOnline": true,
+      "NewFirmwareAvailable": false,
+      "NumberOfEndpoints": 1,
+      "Parameters": null,
+      "PrivateKey": "XXXXXXXXY1",
+      "ScriptObjectID": null,
+      "TechnologyID": 5
+    }],
+    "EndpointValues": [{
+      "EndpointID": 70001,
+      "Values": [{
+        "Value": "22",
+        "ValueType": 13
+      }, {
+        "Value": "0",
+        "ValueType": 14
+      }, {
+        "Value": "3",
+        "ValueType": 15
+      }, {
+        "Value": "0",
+        "ValueType": 16
+      }, {
+        "Value": "0",
+        "ValueType": 17
+      }, {
+        "Value": "0",
+        "ValueType": 18
+      }, {
+        "Value": "24",
+        "ValueType": 20
+      }, {
+        "Value": "80",
+        "ValueType": 59
+      }, {
+        "Value": "3909",
+        "ValueType": 60
+      }, {
+        "Value": "71",
+        "ValueType": 61
+      }, {
+        "Value": "0",
+        "ValueType": 62
+      }]
+    }],
+    "Endpoints": [{
+      "Address": "1",
+      "Capabilities": 2555264,
+      "Description": "AC",
+      "DeviceAddress": "AC123",
+      "DeviceID": 60001,
+      "DeviceModelDesc": "HPA-4911",
+      "EndpointID": 70001,
+      "EndpointModelDesc": null,
+      "EndpointType": 12,
+      "Functional": true,
+      "Groups": [{
+        "Description": "Living",
+        "GroupID": 20001,
+        "HomeID": 10005
+      }],
+      "HomeID": 10005,
+      "IsEditable": true,
+      "MeteringUnitID": 0,
+      "Parameters": [{
+        "Name": "ConfiguredSensors",
+        "Value": "0"
+      }, {
+        "Name": "IRProtocolCode",
+        "Value": "30"
+      }, {
+        "Name": "RoomTemperatureOffset",
+        "Value": "-400"
+      }, {
+        "Name": "SetpointMaxC",
+        "Value": "30"
+      }, {
+        "Name": "SetpointMinC",
+        "Value": "17"
+      }],
+      "ScriptObjectID": null
+    }],
+    "Groups": [{
+      "Description": "Living",
+      "GroupID": 20001,
+      "HomeID": 10005
+    }],
+    "Home": {
+      "Description": "Home",
+      "HomeID": 10005,
+      "InvitedBy": "",
+      "IsDefault": true,
+      "IsOnline": true,
+      "IsOwner": true,
+      "Location": {
+        "CityName": null,
+        "CountryName": null,
+        "Latitude": null,
+        "Longitude": null,
+        "Radius": 500,
+        "StateName": null
+      },
+      "RemoteAccessKey": "XXXXXXXXY2",
+      "TimeZoneID": 1,
+      "TimeZoneOffset": -180,
+      "Virtual": true,
+      "Weather": {
+        "Temperature": null
+      }
+    },
+    "Macros": null,
+    "NewSerials": {
+      "Alarms": 0,
+      "Devices": 1803500375,
+      "EndpointValues": 1027422332,
+      "Endpoints": 1561243994,
+      "Groups": 1766414354,
+      "Home": 1480175878,
+      "Macros": 487638952,
+      "Notifications": 487638952,
+      "Scenes": 218289185
+    },
+    "ResponseStatus": {
+      "Messages": [],
+      "Status": 0
+    },
+    "Scenes": [{
+      "Description": "A",
+      "EndpointValues": [{
+        "EndpointID": 70001,
+        "Values": [{
+          "Value": "0",
+          "ValueType": 14
+        }, {
+          "Value": "255",
+          "ValueType": 15
+        }, {
+          "Value": "-327.68",
+          "ValueType": 20
+        }]
+      }],
+      "Geofence": {
+        "OnEnter": false,
+        "OnExit": false,
+        "RequiresConfirmation": false
+      },
+      "Groups": [{
+        "Description": "Living",
+        "GroupID": 20001,
+        "HomeID": 10005
+      }],
+      "HomeID": 10005,
+      "SceneID": 8000,
+      "Triggers": [{
+        "Description": "at 04:00 hs everyday",
+        "EndDate": {
+          "Day": 0,
+          "Month": 0,
+          "Year": 0
+        },
+        "Frequency": 0,
+        "HomeID": 10005,
+        "IntervalMinutes": 0,
+        "MonthDayNumber": 0,
+        "MonthWeek": 0,
+        "MonthWeekDay": 0,
+        "OffsetMinutes": 0,
+        "OnApril": false,
+        "OnAugust": false,
+        "OnDecember": false,
+        "OnFebruary": false,
+        "OnFriday": true,
+        "OnJanuary": false,
+        "OnJuly": false,
+        "OnJune": false,
+        "OnMarch": false,
+        "OnMay": false,
+        "OnMonday": true,
+        "OnNovember": false,
+        "OnOctober": false,
+        "OnSaturday": true,
+        "OnSeptember": false,
+        "OnSunday": true,
+        "OnThursday": true,
+        "OnTuesday": true,
+        "OnWednesday": true,
+        "RepeatForMinutes": 0,
+        "RepeatUntilTime": {
+          "Hour": 0,
+          "Millisecond": 0,
+          "Minute": 0,
+          "Second": 0
+        },
+        "RepetitionsLeft": 0,
+        "RunningTime": {
+          "Hour": 4,
+          "Millisecond": 0,
+          "Minute": 0,
+          "Second": 0
+        },
+        "StartDate": {
+          "Day": 0,
+          "Month": 0,
+          "Year": 0
+        },
+        "TimeType": 3,
+        "TriggerID": 4001,
+        "TriggerSourceID": 0,
+        "TriggerType": 2,
+        "TriggersExecutionID": 0
+      }],
+      "TriggersAreEnabled": false
+    }, {
+      "Description": "B",
+      "EndpointValues": [{
+        "EndpointID": 70001,
+        "Values": [{
+          "Value": "0",
+          "ValueType": 14
+        }, {
+          "Value": "255",
+          "ValueType": 15
+        }, {
+          "Value": "-327.68",
+          "ValueType": 20
+        }]
+      }],
+      "Geofence": {
+        "OnEnter": false,
+        "OnExit": false,
+        "RequiresConfirmation": false
+      },
+      "Groups": [{
+        "Description": "Living",
+        "GroupID": 20001,
+        "HomeID": 10005
+      }],
+      "HomeID": 10005,
+      "SceneID": 70001,
+      "Triggers": [{
+        "Description": "at 08:30 hs everyday",
+        "EndDate": {
+          "Day": 0,
+          "Month": 0,
+          "Year": 0
+        },
+        "Frequency": 0,
+        "HomeID": 10005,
+        "IntervalMinutes": 0,
+        "MonthDayNumber": 0,
+        "MonthWeek": 0,
+        "MonthWeekDay": 0,
+        "OffsetMinutes": 0,
+        "OnApril": false,
+        "OnAugust": false,
+        "OnDecember": false,
+        "OnFebruary": false,
+        "OnFriday": true,
+        "OnJanuary": false,
+        "OnJuly": false,
+        "OnJune": false,
+        "OnMarch": false,
+        "OnMay": false,
+        "OnMonday": true,
+        "OnNovember": false,
+        "OnOctober": false,
+        "OnSaturday": true,
+        "OnSeptember": false,
+        "OnSunday": true,
+        "OnThursday": true,
+        "OnTuesday": true,
+        "OnWednesday": true,
+        "RepeatForMinutes": 0,
+        "RepeatUntilTime": {
+          "Hour": 0,
+          "Millisecond": 0,
+          "Minute": 0,
+          "Second": 0
+        },
+        "RepetitionsLeft": 0,
+        "RunningTime": {
+          "Hour": 8,
+          "Millisecond": 0,
+          "Minute": 30,
+          "Second": 0
+        },
+        "StartDate": {
+          "Day": 0,
+          "Month": 0,
+          "Year": 0
+        },
+        "TimeType": 3,
+        "TriggerID": 4002,
+        "TriggerSourceID": 0,
+        "TriggerType": 2,
+        "TriggersExecutionID": 0
+      }],
+      "TriggersAreEnabled": false
+    }]
+  }
+}
