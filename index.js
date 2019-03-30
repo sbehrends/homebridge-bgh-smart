@@ -1,7 +1,9 @@
 const {
   FAN_MODE,
   MODE,
+  ENDPOINT_CAPABILITIES,
 } = require('./lib/constants')
+const utils = require('./lib/utils')
 const solidmation = require('./lib/solidmationApi')
 
 var Accessory, Service, Characteristic, UUIDGen;
@@ -55,6 +57,7 @@ class SolidmationPlatform {
               FirmwareVersion,
               IsOnline,
               EndpointType,
+              Capabilities,
             } = device
             
             if(this.accessories.find(accesory => accesory.context.HomeID == HomeID && accesory.context.DeviceID == DeviceID)) {
@@ -71,6 +74,7 @@ class SolidmationPlatform {
               FirmwareVersion,
               IsOnline,
               EndpointType,
+              Capabilities,
             })
           })
         })
@@ -86,6 +90,15 @@ class SolidmationPlatform {
 
     const service = accessory.getService(Service.Thermostat)
 
+    
+
+    try {
+      service.addOptionalCharacteristic(Characteristic.SwingMode)
+      service.addOptionalCharacteristic(Characteristic.RotationSpeed)
+    } catch (err) {
+      console.log(err)
+    }
+    
     service.getCharacteristic(Characteristic.SwingMode)
     .on('get', async (callback) => {
       console.log('Get SwingMode')
@@ -104,12 +117,6 @@ class SolidmationPlatform {
       // this.solidmation.setDeviceStatus(accessory.context.DeviceID, { fanMode: setValue })
       callback();
     })
-
-    try {
-      service.addCharacteristic(Characteristic.RotationSpeed)
-    } catch (err) {
-
-    }
 
     service.getCharacteristic(Characteristic.RotationSpeed)
       .setProps({
@@ -139,28 +146,42 @@ class SolidmationPlatform {
     service.getCharacteristic(Characteristic.TemperatureDisplayUnits)
       .on('get', (callback) => {
         this.log('GET - TemperatureDisplayUnits')
-        callback(null, 1)
+        callback(null, Characteristic.TemperatureDisplayUnits.CELSIUS)
       })
       .on('set', (value, callback) => {
         this.log('SET - TemperatureDisplayUnits')
-        callback(null, 1)
+        callback(null, Characteristic.TemperatureDisplayUnits.CELSIUS)
       })
 
+    
+    // TODO: Export to transform function
+    console.log('accc', accessory.context.Capabilities)
+    const endpointCapabilities = [Characteristic.TargetHeatingCoolingState.OFF]
+    if (accessory.context.Capabilities & ENDPOINT_CAPABILITIES.ecThermostatCool) {
+      endpointCapabilities.push(Characteristic.TargetHeatingCoolingState.COOL)
+    }
+    if (accessory.context.Capabilities & ENDPOINT_CAPABILITIES.ecThermostatHeat) {
+      endpointCapabilities.push(Characteristic.TargetHeatingCoolingState.HEAT)
+    }
+    if (
+      accessory.context.Capabilities & ENDPOINT_CAPABILITIES.ecThermostatCool &&
+      accessory.context.Capabilities & ENDPOINT_CAPABILITIES.ecThermostatHeat) {
+        endpointCapabilities.push(Characteristic.TargetHeatingCoolingState.AUTO)
+      }
+    
     service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
       .setProps({
-        validValues: [
-          Characteristic.TargetHeatingCoolingState.OFF,
-          Characteristic.TargetHeatingCoolingState.COOL
-        ]
+        validValues: endpointCapabilities
       })
       .on('get', async (callback) => {
-        this.log('GET - TargetHeatingCoolingState')
+        this.log(`GET ${accessory.context.Description} - TargetHeatingCoolingState`)
         const device = await this.solidmation.getDeviceStatus(accessory.context.DeviceID)
-        callback(null, device.endpointValues.mode)
+        this.log(`GET ${accessory.context.Description} - From ${device.endpointValues.mode} To ${utils.modeTranslate(device.endpointValues.mode, 'Solidmation')}`)
+        callback(null, utils.modeTranslate(device.endpointValues.mode, 'Solidmation'))
       })
       .on('set', (value, callback) => {
-        this.log('SET - TargetHeatingCoolingState')
-        this.solidmation.setDeviceStatus(accessory.context.DeviceID, { mode: value })
+        this.log(`GET ${accessory.context.Description} - TargetHeatingCoolingState`)
+        this.solidmation.setDeviceStatus(accessory.context.DeviceID, { mode: utils.modeTranslate(value, 'HomeKit') })
         // const value = utils.getKeyByValue(device.mode)
         callback(null, value);
       })
@@ -218,6 +239,8 @@ class SolidmationPlatform {
     newAccessory.context.Address = device.Address
     newAccessory.context.DeviceID = device.DeviceID
     newAccessory.context.EndpointType = device.EndpointType
+    console.log(device)
+    newAccessory.context.Capabilities = device.Capabilities
     
     newAccessory.on('identify', function(paired, callback) {
       console.log(newAccessory.displayName, "Identify!!!");
