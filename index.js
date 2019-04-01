@@ -145,13 +145,13 @@ class SolidmationPlatform {
 
     service.getCharacteristic(Characteristic.TemperatureDisplayUnits)
       .on('get', (callback) => {
-        this.log('GET - TemperatureDisplayUnits')
+        this.log(`GET ${accessory.context.Description} - TemperatureDisplayUnits`)
         callback(null, Characteristic.TemperatureDisplayUnits.CELSIUS)
       })
-      .on('set', (value, callback) => {
-        this.log('SET - TemperatureDisplayUnits')
-        callback(null, Characteristic.TemperatureDisplayUnits.CELSIUS)
-      })
+      // .on('set', (value, callback) => {
+      //   this.log(`GET ${accessory.context.Description} - TemperatureDisplayUnits`)
+      //   callback(null, Characteristic.TemperatureDisplayUnits.CELSIUS)
+      // })
 
     
     // TODO: Export to transform function
@@ -180,27 +180,32 @@ class SolidmationPlatform {
         callback(null, utils.modeTranslate(device.endpointValues.mode, 'Solidmation'))
       })
       .on('set', (value, callback) => {
-        this.log(`GET ${accessory.context.Description} - TargetHeatingCoolingState`)
+        this.log(`SET ${accessory.context.Description} - TargetHeatingCoolingState`)
         this.solidmation.setDeviceStatus(accessory.context.DeviceID, { mode: utils.modeTranslate(value, 'HomeKit') })
         // const value = utils.getKeyByValue(device.mode)
         callback(null, value);
       })
 
     service.getCharacteristic(Characteristic.TargetTemperature)
+      .setProps({
+        minValue: 17, // Replace with real endpoint values
+        maxValue: 30,
+        minStep: 1
+      })
       .on('get', async (callback) => {
-        this.log('GET - TargetTemperature')
+        this.log(`GET ${accessory.context.Description} - TargetTemperature`)
         const device = await this.solidmation.getDeviceStatus(accessory.context.DeviceID)
-        callback(null, device.endpointValues.desiredTemp);
+        callback(null, device.endpointValues.desiredTempC);
       })
       .on('set', (value, callback) => {
-        this.log('SET - TargetTemperature')
+        this.log(`SET ${accessory.context.Description} - TargetTemperature`)
         this.solidmation.setDeviceStatus(accessory.context.DeviceID, { desiredTempC: value })
         callback(null, value);
       })
 
     service.getCharacteristic(Characteristic.CurrentTemperature)
       .on('get', async (callback) => {
-        this.log('GET - CurrentTemperature')
+        this.log(`GET ${accessory.context.Description} - CurrentTemperature`)
         const device = await this.solidmation.getDeviceStatus(accessory.context.DeviceID)
         callback(null, device.endpointValues.currentTemp)
       })
@@ -239,7 +244,10 @@ class SolidmationPlatform {
     newAccessory.context.Address = device.Address
     newAccessory.context.DeviceID = device.DeviceID
     newAccessory.context.EndpointType = device.EndpointType
-    console.log(device)
+    newAccessory.context.setpontMaxMin = {
+      max: utils.getEndpointParameter(device.Parameters, 'SetpointMaxC'),
+      min: utils.getEndpointParameter(device.Parameters, 'SetpointMinC')
+    }
     newAccessory.context.Capabilities = device.Capabilities
     
     newAccessory.on('identify', function(paired, callback) {

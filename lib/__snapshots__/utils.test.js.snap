@@ -70,7 +70,7 @@ Array [
     },
     "endpointValues": Object {
       "currentTemp": "22",
-      "desiredTemp": "24",
+      "desiredTempC": "24",
       "fanMode": "3",
       "mode": "0",
       "swingMode": 0,

@@ -5,7 +5,7 @@
   ],
   "version": "1.0.0",
   "description": "BGH Smart Control plugin for homebridge",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Sergio Behrends <sergio@behrends.com.ar>",
   "scripts": {
     "build": "babel index.js -d dist && babel lib -d dist/lib",
