@@ -4,29 +4,26 @@ A [Homebridge](https://github.com/nfarina/homebridge) plugin for "BGH Smart Cont
 
 It uses https://bgh-services.solidmation.com/ API to interact with your registered devices
 
+### Major change from 1.0.0
+
+On version <= 1.0.0 the behavior of the plugin changed. *Instead of being a configurable accesory* in your homebridge config file, now *it's a platform*.
+
+*The configuration got easier and it will autodiscover all your available devices* in your account. (It only requires email and password)
+
+![BGH Smart AC in Home](screenshot.jpg?raw=true "BGH Smart AC in Home")
+
 ### Installation
 
 ```
 npm install homebridge-bgh-smart -g
 ```
 
-Add to your configuration
+Add to your homebridge configuration
 
 ```
-{
-  "accessory": "BGH-Smart",
-  "name": "Accesory Name",
+"platforms": [{
+  "platform": "BGH-Smart",
   "email": "email@domain.com",
-  "password": "password",
-  "deviceName": "Device name in Solidmation",
-  "homeId": "12345",
-  "deviceId": "12345"
-}
+  "password": "password"
+}]
 ```
-
-To help you finding homeId and deviceId paste this on the browser cosnole while logged in at the [Dashboard](https://bgh-services.solidmation.com/control/Panel.aspx) Source available in getDevicesHelper.js
-
-```
-function getDevices(a){jQuery.ajax({type:"POST",url:"https://bgh-services.solidmation.com/1.0/HomeCloudService.svc/GetDataPacket",contentType:"application/json",data:JSON.stringify({token:HCData.AccessToken,homeID:a,serials:{Home:0,Groups:0,Devices:0,Endpoints:0,EndpointValues:0,Scenes:0,Macros:0,Alarms:0},timeOut:1e4}),success:function(a){if(a.GetDataPacketResult.Endpoints.length>0)for(var b=0;b<a.GetDataPacketResult.Endpoints.length;b++){var c=a.GetDataPacketResult.Endpoints[b],d={accessory:"BGH-Smart",name:c.Description,email:"email@domain.com",password:"password",deviceName:c.Description,homeId:c.HomeID,deviceId:c.EndpointID};alert(JSON.stringify(d))}}})}var c=$.cookie("HCData");if(c){var HCData=JSON.parse(c);HCData.AccessToken={Token:decodeURIComponent(HCData.AccessToken)},HCData.FirstName=decodeURIComponent(HCData.FirstName),HCData.LastName=decodeURIComponent(HCData.LastName),jQuery.ajax({type:"POST",url:"https://bgh-services.solidmation.com/1.0/HomeCloudService.svc/EnumHomes",contentType:"application/json",data:JSON.stringify({token:HCData.AccessToken}),success:function(a){if(a.EnumHomesResult&&a.EnumHomesResult.Homes)for(var b=0;b<a.EnumHomesResult.Homes.length;b++){var c=a.EnumHomesResult.Homes[b];getDevices(c.HomeID)}}})}
-```
-
