@@ -14,3 +14,24 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
+  
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - name: Get Timestamp
+        id: time
+        uses: nanzm/get-time-action@v1.0
+        with:
+          timeZone: 0
+          format: 'YYYYMMDDHHmmss'
+      - run: npm version 
+      - run: "npm publish prerelease --preid=${{ steps.time.outputs.time }}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
