@@ -3,7 +3,7 @@
   "keywords": [
     "homebridge-plugin"
   ],
-  "version": "2.0.3-dsa.6",
+  "version": "2.0.3-dsa.7",
   "description": "BGH Smart Control plugin for homebridge",
   "main": "dist/index.js",
   "author": "Sergio Behrends <sergio@behrends.com.ar>",
