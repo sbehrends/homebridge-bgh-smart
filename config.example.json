@@ -7,8 +7,8 @@
   },
 
   "platforms": [{
-    "platform": "Solidmation",
-    "user": "ser@domain.com",
+    "platform": "BGH-Smart",
+    "email": "ser@domain.com",
     "password": "secret",
     "homeFilter": []
   }]
